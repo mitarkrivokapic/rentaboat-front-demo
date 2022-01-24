@@ -1,40 +1,33 @@
 import Head from "next/head";
 
-// import { TiGroup } from "react-icons/ti";
-
 import { API_URL } from "@/config/index";
 import Layout from "@/components/Layout";
-import Hero from "@/components/Hero";
 
-import Boats from "@/components/Boats";
-import Tours from "@/components/Tours";
-
-export default function Home({ pageData, dataNavigation }) {
+export default function BoatsPage({ pageData, dataNavigation }) {
   return (
     <div>
       <Head>
-        <title>Rent a boat</title>
+        <title>Rent a boat - boats</title>
         <meta
           name="description"
-          content="Book tour and boat with skipper on the Belgrade rivers."
+          content="Find a boat with skipper for your adventure."
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout
         header={dataNavigation.header}
         footer={dataNavigation.footer}
         footerText={dataNavigation.footer_text}
       >
-        <Hero data={pageData.hero} />
-        <Boats data={pageData.boats} />
-        <Tours data={pageData.tours} />
+        {pageData.map((boat) => (
+          <h1>{boat.attributes.name}</h1>
+        ))}
       </Layout>
     </div>
   );
 }
 
 export async function getStaticProps() {
-  const resPage = await fetch(`${API_URL}/api/page/home`);
+  const resPage = await fetch(`${API_URL}/api/boats?populate=*`);
 
   const pageData = await resPage.json();
 
@@ -46,7 +39,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      pageData: pageData,
+      pageData: pageData.data,
       dataNavigation: dataNavigation.data.attributes,
     },
   };

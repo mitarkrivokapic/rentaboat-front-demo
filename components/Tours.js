@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { API_URL } from "@/config/index";
-
 export default function Tours({ data }) {
   return (
     <section className="py-16 sm:py-28 ">
@@ -16,14 +14,14 @@ export default function Tours({ data }) {
           </p>
         </div>
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-          {data.tours.data.map((tour) => (
+          {data.tours.map((tour) => (
             <div
               key={tour.id}
               className="w-10/12 pb-5 bg-white mx-auto shadow-lg overflow-hidden rounded-md"
             >
               <div className="w-full h-56 relative">
                 <Image
-                  src={`${API_URL}${tour.attributes.image.data.attributes.formats.small.url}`}
+                  src={`${tour.image.formats.small.url}`}
                   //   width={320}
                   //   height={224}
                   layout="fill"
@@ -35,13 +33,11 @@ export default function Tours({ data }) {
               </div>
               <div className="flex justify-between items-center p-4">
                 <h3 className="text-2xl font-bold text-gray-900">
-                  {tour.attributes.title}
+                  {tour.title}
                 </h3>
               </div>
 
-              <p className="px-4 pb-4 min-h-[10rem]">
-                {tour.attributes.excerpt}
-              </p>
+              <p className="px-4 pb-4 min-h-[10rem]">{tour.excerpt}</p>
               <Link href="#">
                 <a className="ml-4 px-4 py-2 rounded-md inline-block bg-gray-900 hover:bg-gray-600 text-white">
                   Read more

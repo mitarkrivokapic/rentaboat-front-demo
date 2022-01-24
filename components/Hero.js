@@ -14,7 +14,7 @@ export default function Hero({ data }) {
       </div>
       <div className="w-full h-full absolute opacity-70 bg-gradient-to-r from-blue-500 to-blue-400 z-10"></div>
       <Image
-        src={`${API_URL}${data.image.data.attributes.formats.large.url}`}
+        src={`${data.image.formats.large.url}`}
         layout="fill"
         className="z-0"
         objectFit="cover"
