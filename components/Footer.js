@@ -4,7 +4,6 @@ import { SiInstagram } from "react-icons/si";
 import { FaFacebookSquare } from "react-icons/fa";
 
 export default function Footer({ data }) {
-  console.log(data);
   return (
     <footer className="bg-gray-900 pt-6 pb-3 px-2 sm:px-12 text-white">
       <div className="container mx-auto">

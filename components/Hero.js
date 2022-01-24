@@ -19,6 +19,7 @@ export default function Hero({ data }) {
         className="z-0"
         objectFit="cover"
         priority={true}
+        alt="Hero image"
       />
     </div>
   );
